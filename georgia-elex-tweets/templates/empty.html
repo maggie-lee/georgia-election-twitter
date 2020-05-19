@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Georgia Election Twitter" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://www.georgiaelectiontwitter.com" />
+    <meta property="og:image" content="http://www.georgiaelectiontwitter.com/static/img/us_capitol.jpg" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Georgia Election Twitter - About</title>
+
+    <style>
+        body > div {
+            margin: auto;
+            max-width: 800px;
+            padding-top:10px
+        }
+
+        .main {
+              padding-left: 5px;
+         }
+    </style>
+
+</head>
+<body>
+<nav role="navigation" class="nav" style="background-color: #e3f2fd;">
+    <img height="40" width="40" src="../static/img/georgia.svg" alt="icon of a map of the state of Georgia" title="icon of a map of the state of Georgia">
+    <img height="40" width="40" src="../static/img/ballot-box.svg" alt="icon of a ballot box" title="icon of a ballot box">
+    <a class="navbar-brand" style="margin-left:15px;" href="{{ url_for('index') }}" rel="noopener">Georgia Election Twitter</a>
+    <a class="nav-link" href="https://www.house.gov/representatives/find-your-representative" rel="noopener">Find Your District</a>
+    <a class="nav-link" href="{{ url_for('detail', topic='about') }}" rel="noopener">About</a>
+</nav>
+
+<div class="main">
+    {{ topic }}
+
+</div>
+
+</body>
+</html>

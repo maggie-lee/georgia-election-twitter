@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Georgia Election Twitter" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://www.georgiaelectiontwitter.com" />
+    <meta property="og:image" content="http://www.georgiaelectiontwitter.com/static/img/us_capitol.jpg" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Georgia Election Twitter</title>
+    <style>
+
+            body > div {
+                margin: auto;
+                max-width: 800px;
+            }
+
+            #centering_div {
+                display: box;
+            }
+
+            .headline {
+                margin-top:12px;
+            }
+
+            .main {
+                padding-left: 5px;
+             }
+
+            h5 {
+                margin-top:2rem;
+            }
+
+            ul.striped-list > li:nth-of-type(odd) {
+                    background-color: #dee2e6;
+            }
+
+    </style>
+</head>
+<body>
+    <nav role="navigation" class="nav" style="background-color: #e3f2fd;">
+        <img height="40" width="40" src="../static/img/georgia.svg" alt="icon of a map of the state of Georgia" title="icon of a map of the state of Georgia">
+        <img height="40" width="40" src="../static/img/ballot-box.svg" alt="icon of a ballot box" title="icon of a ballot box">
+        <a class="navbar-brand" style="margin-left:15px;" href="{{ url_for('index') }}" rel="noopener">Georgia Election Twitter</a>
+        <a class="nav-link" href="https://www.house.gov/representatives/find-your-representative" rel="noopener">Find Your District</a>
+        <a class="nav-link" href="{{ url_for('detail', topic='about') }}" rel="noopener">About</a>
+    </nav>
+
+<div class="main">
+    <div class="headline" role="presentation">
+        <h2>
+        What Georgia 2020 candidates are tweeting ...
+        </h2>
+    </div>
+    <p class="small"><a href="http://www.maggielee.net" rel="noopener">By Maggie Lee</a><br>
+    Last update: {{ formatted_timestamp }} EST</p>
+    <p>Welcome to Georgia Election Twitter: tweets from Georgia's 2020 U.S. Senate and U.S. House candidates, in near-real time.</p>
+    <div id="centering_div">
+        <p>
+            <a href="{{ url_for('detail', topic='senate_regular') }}" rel="noopener">Senate Regular Election (statewide vote)</a><br>
+            <a href="{{ url_for('detail', topic='senate_special') }}" rel="noopener">Senate Special Election (statewide vote)</a>
+        </p>
+            <table width="100%">
+                <tr>
+                    <td>
+                        <p>
+                            <a href="{{ url_for('detail', topic='hd1') }}" rel="noopener">GA 1</a><br>
+                            <a href="{{ url_for('detail', topic='hd2') }}" rel="noopener">GA 2</a><br>
+                            <a href="{{ url_for('detail', topic='hd3') }}" rel="noopener">GA 3</a><br>
+                            <a href="{{ url_for('detail', topic='hd4') }}" rel="noopener">GA 4</a><br>
+                            <a href="{{ url_for('detail', topic='hd5') }}" rel="noopener">GA 5</a><br>
+                            <a href="{{ url_for('detail', topic='hd6') }}" rel="noopener">GA 6</a><br>
+                            <a href="{{ url_for('detail', topic='hd7') }}" rel="noopener">GA 7</a><br>
+                            <a href="{{ url_for('detail', topic='hd8') }}" rel="noopener">GA 8</a><br>
+                            <a href="{{ url_for('detail', topic='hd9') }}" rel="noopener">GA 9</a><br>
+                            <a href="{{ url_for('detail', topic='hd10') }}" rel="noopener">GA 10</a><br>
+                            <a href="{{ url_for('detail', topic='hd11') }}" rel="noopener">GA 11</a><br>
+                            <a href="{{ url_for('detail', topic='hd12') }}" rel="noopener">GA 12</a><br>
+                            <a href="{{ url_for('detail', topic='hd13') }}" rel="noopener">GA 13</a><br>
+                            <a href="{{ url_for('detail', topic='hd14') }}" rel="noopener">GA 14</a><br>
+                        </p>
+                    </td>
+                    <td width="80%" style="text-align: center;">
+                      <img height="280" width="280" src="../static/img/georgia_congressional_square.png" alt="A map of Georgia congressional districts" title="A map of Georgia congressional districts">
+                    </td>
+                </tr>
+            </table>
+
+        <form id="search-form" action="/search/search" method="post" role="search">
+            <div class="form-group">
+                <label for="search">Or search tweets since Aug. 20. Try a word, a phrase or an emoji like  🇺🇸:</label>
+                <input type="search" id="search" class="form-control" name="search" style="max-width:400px">
+                <button type="submit" class="btn btn-primary btn-sm" role="search">Search</button>
+                <span class="small"><a href="https://ga-elex-twitter-sx7bcyrkda-ue.a.run.app/simplified_output/elex_tweets?_sort_desc=created_at_est" rel="noopener">Advanced search</a> |
+                <a href="https://ga-elex-twitter-sx7bcyrkda-ue.a.run.app/simplified_output/elex_tweets?_sort_desc=created_at_est" rel="noopener">See all tweets</a></span>
+            </div>
+        </form>
+
+        <p>Or just scroll through the latest:</p>
+    </div>
+    <ul class="list-group list-group-flush striped-list">
+
+        {% for obj in latest.rows %}
+            <li class="list-group-item">
+                <a href="{{obj.user_url}}" rel="noopener"> {{ obj['display_name']|replace('Noel', 'Noël') }}</a>:<br>
+                {{ obj['full_text'] }}  <br>
+                <span class="small">{{ obj['created_at_est'] }} | <a href="{{obj['tweet_url']}}" rel="noopener">Full tweet...</a></span>
+            </li>
+        {% endfor %}
+    </ul>
+    <p class="large">
+    <a href="https://ga-elex-twitter-sx7bcyrkda-ue.a.run.app/simplified_output/elex_tweets?_sort_desc=created_at_est" rel="noopener">See all tweets</a>
+    </p>
+</div>
+
+</body>
+</html>

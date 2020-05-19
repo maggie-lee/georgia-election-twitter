@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Georgia Election Twitter" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://www.georgiaelectiontwitter.com" />
+    <meta property="og:image" content="http://www.georgiaelectiontwitter.com/static/img/us_capitol.jpg" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Georgia Election Twitter - About</title>
+
+    <style>
+        body > div {
+            margin: auto;
+            max-width: 800px;
+            padding-top:10px
+        }
+
+        .main {
+              padding-left: 5px;
+         }
+    </style>
+
+</head>
+<body>
+<nav role="navigation" class="nav" style="background-color: #e3f2fd;">
+    <img height="40" width="40" src="../static/img/georgia.svg" alt="icon of a map of the state of Georgia" title="icon of a map of the state of Georgia">
+    <img height="40" width="40" src="../static/img/ballot-box.svg" alt="icon of a ballot box" title="icon of a ballot box">
+    <a class="navbar-brand" style="margin-left:15px;" href="{{ url_for('index') }}" rel="noopener">Georgia Election Twitter</a>
+    <a class="nav-link" href="https://www.house.gov/representatives/find-your-representative" rel="noopener">Find Your District</a>
+    <a class="nav-link" href="{{ url_for('detail', topic='about') }}" rel="noopener">About</a>
+</nav>
+
+<div class="main">
+
+        <p class="font-weight-bold">Who are you?</p>
+        <p>I'm Maggie Lee, a freelance reporter who covers state and local government in Atlanta, Georgia. I do
+            traditional written reporting and data reporting, and <a href="http://maggielee.net/" rel="noopener">I have a portfolio</a>.
+            This is a side project.</p>
+
+        <p class="font-weight-bold">What is this?</p>
+        <p>It's the tweets of the people running for U.S. House or U.S. Senate from Georgia in 2020 who tweet. There
+        were already more than 60 candidates when this started as of late 2019, but not all are on Twitter.</p>
+        <p>The data doesn't include retweets, because as we all know, those aren't endorsements!</p>
+
+        <p class="font-weight-bold">Why are you doing this?</p>
+        <p> I wanted to capture 2020 Georgia election rhetoric
+            and throw it into a single convenient dumpster fire. I figured it would be nuts
+            because we'll have two U.S. Senate races and we're supposed to now be a swing state instead of a quiet one-party state.</p>
+            <p>But as I read the tweets, I realized the site could also capture and list policy statements.</p>
+            <p>And it puts Democrats and Republicans on the same list, side-by-side, which removes the filter
+            effect that you get if your social media tends to be full of one side or the other.</p>
+            <p>So now this project has two purposes: come for the policy discussion and stay for the hate-reading/love-reading of the
+                candidates you have feelings about.</p>
+            <p>Also, it's inspired by the <a href="https://www.trumptwitterarchive.com/" rel="noopener">Trump Twitter Archive</a>.</p>
+
+        <p class="font-weight-bold">Who's on the list?</p>
+        <p>The list is stored as this <a href="https://twitter.com/maggie_a_lee/lists/ga-elex" rel="noopener">Twitter list</a>.
+            I'm going by candidates per <a href="https://elections.sos.ga.gov/GAElection/CandidateDetails" rel="noopener">filings with the Georgia Secretary of State's office</a>.
+
+            Before those were due, I went by <a href="https://www.fec.gov/data/candidates/?election_year=2020&state=GA&is_active_candidate=true" rel="noopener"> FEC filings</a>.
+            <p>I'm looking up Twitter handles myself, and some of these folks change their handles. It's hard to keep a "handle" on it! 😹</p>
+            <p>If I'm missing a handle, please let me know via <a href="https://twitter.com/maggie_a_lee" rel="noopener">@maggie_a_lee</a> on
+            Twitter or at georgiaelectiontwitter@gmail.com.</p>
+            <p>I remove candidates from the Twitter list when they drop out of the race, but their archived tweets will still be here.</p>
+
+        <p class="font-weight-bold">Who drew the icons?</p>
+        <p>The Georgia icon is by <a href="https://thenounproject.com/leonardo.schneider/collection/georgia/?i=101696" rel="noopener">Leonardo Schneider</a>.</p>
+        <p>The ballot box is by <a href="https://thenounproject.com/search/?q=ballot%20box&i=117646" rel="noopener">Josh</a>.</p>
+        <p>Both are licensed under <a href="https://creativecommons.org/licenses/by/3.0/us/legalcode" rel="noopener">Creative Commons</a> and collected at <a href="https://thenounproject.com" rel="noopener">The Noun Project</a>.</p>
+
+        <p class="font-weight-bold">How did you get this data?</p>
+        <p>I wrote a script in Python that downloads tweets about every 15 minutes and saves them to a database.</p>
+
+        <p class="font-weight-bold">Can I use this data?</p>
+        <p>Yes. It is <a href="https://ga-elex-twitter-sx7bcyrkda-ue.a.run.app/simplified_output/elex_tweets?_sort_desc=created_at_est" rel="noopener">here</a>, thanks to <a href="https://github.com/simonw/datasette" rel="noopener">Datasette</a>.
+            You can explore the data without downloading it. Or you can download it. Or it has an API. Up to you.</p>
+
+        <p class="font-weight-bold">How far back do these tweets go?</p>
+        <p>About August 20, 2019 for candidates who had filed paperwork by that time. When new candidates file paperwork,
+            I'll add them, but their archives won't go back so far.</p>
+
+        <p class="font-weight-bold">Do you have deleted tweets?</p>
+        <p>Sometimes! The bot searches for tweets about every 15 minutes. So if a tweet is made and deleted very quickly, the
+         bot won't find it. But if a tweet is made then deleted more than about 15 minutes later, yes, the deleted tweet will be here.</p>
+
+        <p class="font-weight-bold">Are the times right?</p>
+        <p>Most likely, but it assumes the tweet-er was in the Eastern time zone. Twitter stores tweets in Coordinated Universal Time, which is four hours ahead of Eastern Standard Time.
+            I converted all times to EST, but ... if the tweet-er was in a different time zone when they tweeted, the time may be off. When in doubt, go back to the original tweet.</p>
+
+        <p class="font-weight-bold">Will this ever end?</p>
+        <p>Truly, it feels like election season is never over, but I'm going to shut this down and archive it after the
+            2020 election.</p>
+        <i>Last updated: May 5, 2020.</i>
+
+</div>
+
+</body>
+</html>
